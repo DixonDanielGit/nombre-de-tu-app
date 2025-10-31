@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { StyleSheet, View, Text, Button, TextInput, ImageBackground, Image } from "react-native";
+import { StyleSheet, View, Text, Button, TextInput, ImageBackground, Image, ScrollView } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
 import { Card } from "../components/Card";
@@ -18,7 +18,7 @@ const Login = ({ navigation }) => {
   const [password, setPassword] = useState("");
 
   const handleSubmit = () => {
-    if (user === "WDaniel123" && password === "Sistema.30") {
+    if (user === "" && password === "") {
       navigation.navigate("Main");
     } else {
       alert("Fallo");
@@ -28,7 +28,7 @@ const Login = ({ navigation }) => {
   return (
     <ImageBackground source={wallpaper} style={styles.background} resizeMode="cover">
       <Image source={logo} style={styles.logo} />
-      <Card>
+      <Card color={"#fff"}>
         <Text style={styles.title}>Iniciar Sesión</Text>
         <TextInput style={styles.input} value={user} onChangeText={setUser} placeholder="Usuario" />
         <TextInput style={styles.input} value={password} onChangeText={setPassword} placeholder="Contraseña" secureTextEntry />
@@ -41,10 +41,40 @@ const Login = ({ navigation }) => {
 // Pantalla Home
 const Home = ({ navigation }) => {
   return (
-    <View style={styles.homeContainer}>
-      <Text style={styles.title}>Home</Text>
-      <Button title="Cerrar sesión" onPress={() => navigation.navigate("Login")} />
-    </View>
+    // <View style={styles.homeContainer}>
+    <ScrollView>
+      <View>
+        <Text style={styles.title}>Home</Text>
+
+        <Card color={"#387adf"}>
+          <Text style={styles.title_card}>Pacientes Recuperados: 2</Text>
+        </Card>
+
+        <View >
+          <Card color={"#fff"}>
+            <Text style={styles.sub_title_card}>Citas para hoy: 2</Text>
+          </Card>
+          <Card color={"#fff"}>
+            <Text style={styles.sub_title_card}>Citas para hoy: 2</Text>
+          </Card>
+
+          {/* Reportes */}
+
+          <Card color={"#fff"}>
+            <Text style={styles.sub_title_card}>Especialidades más solicitadas</Text>
+            <View style={styles.circle_reporte}></View>
+            <SubmitButton title="Generar Reporte" onPress={() => alert("Reporte Generado")} />
+          </Card>
+          <Card color={"#fff"}>
+            <Text style={styles.sub_title_card}>Sintomas más comunes</Text>
+            <View style={styles.circle_reporte}></View>
+            <SubmitButton title="Generar Reporte" onPress={() => alert("Reporte Generado")} />
+          </Card>
+        </View>
+
+        {/* <Button title="Cerrar sesión" onPress={() => navigation.navigate("Login")} /> */}
+      </View>
+    </ScrollView>
   );
 };
 
@@ -81,7 +111,6 @@ const HomeTabs = () => {
     </Tab.Navigator>
   );
 };
-
 
 // Stack
 const Stack = createStackNavigator();
@@ -138,9 +167,31 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 2,
   },
-  homeContainer: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+  title_card: {
+    fontSize: 24,
+    fontWeight: "bold",
+    color: "#ffffffff",
+    marginBottom: 20,
+    textAlign: "center",
   },
+  circle_reporte: {
+    backgroundColor: "#cfcfcfff",
+    width: 230,
+    height: 230,
+    borderRadius: 130,
+    margin: "auto",
+  },
+  sub_title_card: {
+    fontSize: 16,
+    fontWeight: "bold",
+    color: "#797979ff",
+    marginBottom: 16,
+    textAlign: "center",
+  },
+
+  // homeContainer: {
+  //   flex: 1,
+  //   justifyContent: "center",
+  //   alignItems: "center",
+  // },
 });
