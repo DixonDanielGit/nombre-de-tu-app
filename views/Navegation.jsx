@@ -66,7 +66,7 @@ const Home = ({ navigation }) => {
             <SubmitButton title="Generar Reporte" onPress={() => alert("Reporte Generado")} />
           </Card>
           <Card color={"#fff"}>
-            <Text style={styles.sub_title_card}>Sintomas más comunes</Text>
+            <Text style={styles.sub_title_card}>Síntomas más comunes</Text>
             <View style={styles.circle_reporte}></View>
             <SubmitButton title="Generar Reporte" onPress={() => alert("Reporte Generado")} />
           </Card>
